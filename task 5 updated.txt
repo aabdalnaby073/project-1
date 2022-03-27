@@ -1,0 +1,82 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <iomanip>
+#include<vector>
+#include<algorithm>
+#include<iterator>
+#include<set>
+#include<map>
+#include<string>
+using namespace std;
+int main(){
+// here we ask user either he want to cipher or decipher
+cout << "Enter cipher or decipher : " ;
+string start ; getline(cin , start ) ;
+string s = "abcdefghijklmnopqrstuvwxyz" ;
+// we ask user for key
+cout << "enter your key :" ;
+string key ; getline(cin , key) ;
+// we delete letters found in key from the alphabets
+for (int i = 0 ; i < key.size(); i++){
+        for (int j = 0 ; j < s.size() ; j++){
+    if (key[i] == s[j]){
+        s[j] = ' ' ;
+    }
+        }
+}
+s.erase(remove(s.begin(), s.end(), ' '), s.end());
+string cipheralphabet =  key + s ;
+s = "abcdefghijklmnopqrstuvwxyz" ;
+if (start == "cipher"){
+map < char , char > m ;
+for(int i = 0 ; i < s.size() ;i++){
+        if (s[i] == ' ')
+        continue ;
+    m[s[i]] = cipheralphabet[i];
+}
+// here we manage to get the ciphered letters and print it
+map<char , char > ::iterator it ;
+cout << "Enter massage you want to cipher : " ;
+string massage ; getline(cin , massage);
+for (int i = 0 ; i < massage.size() ; i++){
+            if (massage[i] == ' ')
+            cout << " " ;
+for (it = m.begin() ; it !=m.end() ; it++){
+     if (massage[i] == it -> first){
+        cout << it->second << "" ;
+
+
+    }
+}
+}
+}
+// this is decipher section
+else {
+// we fill this map with the normal alphabets and the corresponding one
+
+map < char , char > m ;
+for(int i = 0 ; i < s.size() ;i++){
+        if (s[i] == ' ')
+        continue ;
+    m[s[i]] = cipheralphabet[i];
+}
+// here we manage to get the ciphered letters and print it
+map<char , char > ::iterator it ;
+cout << "Enter massage you want to decipher : " ;
+string massage ; getline(cin , massage);
+for (int i = 0 ; i < massage.size() ; i++){
+            if (massage[i] == ' ')
+            cout << " " ;
+for (it = m.begin() ; it !=m.end() ; it++){
+     if (massage[i] == it -> second){
+        cout << it-> first << "" ;
+
+
+    }
+}
+}
+}
+cout << endl ;
+cout << "thank you for your trust " ;
+}
